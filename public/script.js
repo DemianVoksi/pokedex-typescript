@@ -1,12 +1,13 @@
 "use strict";
 // WHOLE POKEMON https://pokeapi.co/api/v2/pokemon/pikachu
+// FLAVOR TEXT https://pokeapi.co/api/v2/pokemon-species/25
 // NAME data.name
-// DESCRIPTION
+// DESCRIPTION pokemon-species data.flavor_text_entries[0]
 // HEIGHT data.height
 // WEIGHT data.weight
-// CATEGORY
+// CATEGORY pokemon-species data.genera[7]
 // TYPE može ih imati nekoliko
-// WEAKNESS
+// WEAKNESS ???
 // HP data.stats[0].base_stat
 // ATTACK data.stats[1].base_stat
 // DEFENSE data.stats[2].base_stat
@@ -22,13 +23,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-// fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-// 	.then((response) => response.json())
-// 	.then((data) => console.log(data));
+fetch('https://pokeapi.co/api/v2/pokemon-species/150')
+    .then((response) => response.json())
+    .then((data) => console.log(data));
 const getPikachu = () => __awaiter(void 0, void 0, void 0, function* () {
     const pikachu = yield fetch('https://pokeapi.co/api/v2/pokemon/pikachu');
     const pikachuJsoned = pikachu.json();
     // pikachuJsoned.then((data) => console.log(data.name));
     return pikachuJsoned;
 });
-let gotten = getPikachu().then((data) => console.log(data));
+// let gotten = getPikachu().then((data) => console.log(data));

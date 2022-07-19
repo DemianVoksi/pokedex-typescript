@@ -1,11 +1,12 @@
 // WHOLE POKEMON https://pokeapi.co/api/v2/pokemon/pikachu
+// FLAVOR TEXT https://pokeapi.co/api/v2/pokemon-species/25
 // NAME data.name
-// DESCRIPTION
+// DESCRIPTION pokemon-species data.flavor_text_entries[0]
 // HEIGHT data.height
 // WEIGHT data.weight
-// CATEGORY
+// CATEGORY pokemon-species data.genera[7]
 // TYPE može ih imati nekoliko
-// WEAKNESS
+// WEAKNESS ???
 // HP data.stats[0].base_stat
 // ATTACK data.stats[1].base_stat
 // DEFENSE data.stats[2].base_stat
@@ -13,9 +14,9 @@
 // SPECIAL DEFENSE data.stats[4].base_stat
 // SPEED data.stats[5].base_stat
 
-// fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-// 	.then((response) => response.json())
-// 	.then((data) => console.log(data));
+fetch('https://pokeapi.co/api/v2/pokemon-species/150')
+	.then((response) => response.json())
+	.then((data) => console.log(data));
 
 const getPikachu = async (): Promise<any> => {
 	const pikachu: Response = await fetch(
@@ -26,4 +27,4 @@ const getPikachu = async (): Promise<any> => {
 	return pikachuJsoned;
 };
 
-let gotten = getPikachu().then((data) => console.log(data));
+// let gotten = getPikachu().then((data) => console.log(data));
