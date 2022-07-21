@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
 
-/*
-font-family: 'Ubuntu', sans-serif;
-*/
+:root {
+  --background-white: #f8f8f8;
+  --ubuntu: 'Ubuntu', sans-serif;
+}
 
 body {
   margin: 0;
@@ -11,6 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--background-white);
 }
 
 .image-container {
@@ -25,3 +27,20 @@ body {
   width: 600px;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-input {
+  margin-top: 20px;
+  font-family: var(--ubuntu);
+  font-size: 13px;
+}
+
+.search-btn {
+  margin-top: 5px;
+  font-family: var(--ubuntu);
+  font-size: 13px;
+}
