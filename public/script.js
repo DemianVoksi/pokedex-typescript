@@ -2,6 +2,7 @@
 // WHOLE POKEMON https://pokeapi.co/api/v2/pokemon/pikachu
 // FLAVOR TEXT https://pokeapi.co/api/v2/pokemon-species/25
 // DAMAGE RELATIONS https://pokeapi.co/api/v2/type
+// IMAGE data.sprites.other['official-artwork'].front_default
 // NAME data.name
 // DESCRIPTION pokemon-species data.flavor_text_entries[0]
 // HEIGHT data.height
@@ -26,15 +27,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 // pokemon logo https://commons.wikimedia.org/wiki/File:International_Pok%C3%A9mon_logo.svg
 // pokedex icon https://icon-library.com/icon/pokedex-icon-15.html.html>Pokedex Icon # 255166
 // sivi pokedex icon <a href="https://www.flaticon.com/free-icons/pokedex" title="pokedex icons">Pokedex icons created by Roundicons Freebies - Flaticon</a>
-fetch('https://pokeapi.co/api/v2/type/2')
+fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
     .then((response) => response.json())
     .then((data) => console.log(data));
 const getPikachu = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
+    // prvo varijable
+    var _a;
+    const image = document.createElement('img');
+    image.style.height = '200px';
+    image.style.width = '200px';
+    // onda fetch
     const pikachu = yield fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     const pikachuJsoned = pikachu.json();
-    // pikachuJsoned.then((data) => console.log(data.name));
-    return pikachuJsoned;
+    pikachuJsoned.then((data) => (image.src = data.sprites.other['official-artwork'].front_default));
+    // pa appendanje
+    (_a = document.querySelector('.image')) === null || _a === void 0 ? void 0 : _a.append(image);
+    // return pikachuJsoned;
 });
+getPikachu('pikachu');
 // let gotten: Promise<void> = getPikachu('pikachu').then((data) =>
 // 	console.log(data)
 // );
