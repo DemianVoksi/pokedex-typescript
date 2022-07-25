@@ -4,11 +4,15 @@
 // DAMAGE RELATIONS https://pokeapi.co/api/v2/type
 // IMAGE data.sprites.other['official-artwork'].front_default
 // NAME data.name
+// NUMBER
+// ABILITIES
+// GENDER
+// BASE EXP
 // DESCRIPTION pokemon-species data.flavor_text_entries[0]
 // HEIGHT data.height
 // WEIGHT data.weight
 // CATEGORY pokemon-species data.genera[7]
-// TYPE može ih imati nekoliko
+// TYPE data.types[]
 // HP data.stats[0].base_stat
 // ATTACK data.stats[1].base_stat
 // DEFENSE data.stats[2].base_stat
@@ -27,9 +31,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 // pokemon logo https://commons.wikimedia.org/wiki/File:International_Pok%C3%A9mon_logo.svg
 // pokedex icon https://icon-library.com/icon/pokedex-icon-15.html.html>Pokedex Icon # 255166
 // sivi pokedex icon <a href="https://www.flaticon.com/free-icons/pokedex" title="pokedex icons">Pokedex icons created by Roundicons Freebies - Flaticon</a>
-fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+let types = [];
+// fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+// 	.then((response) => response.json())
+// 	.then((data) => console.log(data.types));
+// console.log(types);
 const getPikachu = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
     // prvo varijable
     var _a;
@@ -44,7 +50,23 @@ const getPikachu = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
     (_a = document.querySelector('.image')) === null || _a === void 0 ? void 0 : _a.append(image);
     // return pikachuJsoned;
 });
-getPikachu('pikachu');
+// getPikachu('pikachu');
 // let gotten: Promise<void> = getPikachu('pikachu').then((data) =>
 // 	console.log(data)
 // );
+const getTypes = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
+    let typesDiv = document.querySelector('.types');
+    let typeParagraph;
+    const pikachu = yield fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+    const pikachuJsoned = pikachu.json();
+    pikachuJsoned.then((data) => {
+        console.log(data.types.length);
+        for (let i = 0; i < data.types.length; i++) {
+            typeParagraph = document.createElement('p');
+            typeParagraph.innerHTML = data.types[i].type.name;
+            typeParagraph.className = 'typeParagraph';
+            typesDiv.appendChild(typeParagraph);
+        }
+    });
+});
+getTypes('tyranitar');

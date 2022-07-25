@@ -3,11 +3,15 @@
 // DAMAGE RELATIONS https://pokeapi.co/api/v2/type
 // IMAGE data.sprites.other['official-artwork'].front_default
 // NAME data.name
+// NUMBER
+// ABILITIES
+// GENDER
+// BASE EXP
 // DESCRIPTION pokemon-species data.flavor_text_entries[0]
 // HEIGHT data.height
 // WEIGHT data.weight
 // CATEGORY pokemon-species data.genera[7]
-// TYPE može ih imati nekoliko
+// TYPE data.types[]
 // HP data.stats[0].base_stat
 // ATTACK data.stats[1].base_stat
 // DEFENSE data.stats[2].base_stat
@@ -19,9 +23,13 @@
 // pokedex icon https://icon-library.com/icon/pokedex-icon-15.html.html>Pokedex Icon # 255166
 // sivi pokedex icon <a href="https://www.flaticon.com/free-icons/pokedex" title="pokedex icons">Pokedex icons created by Roundicons Freebies - Flaticon</a>
 
-fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-	.then((response) => response.json())
-	.then((data) => console.log(data));
+let types: string[] = [];
+
+// fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+// 	.then((response) => response.json())
+// 	.then((data) => console.log(data.types));
+
+// console.log(types);
 
 const getPikachu = async (pokemon: string): Promise<any> => {
 	// prvo varijable
@@ -43,7 +51,27 @@ const getPikachu = async (pokemon: string): Promise<any> => {
 	// return pikachuJsoned;
 };
 
-getPikachu('pikachu');
+// getPikachu('pikachu');
 // let gotten: Promise<void> = getPikachu('pikachu').then((data) =>
 // 	console.log(data)
 // );
+
+const getTypes = async (pokemon: string): Promise<void> => {
+	let typesDiv: Element = document.querySelector('.types')!;
+	let typeParagraph: Element;
+	const pikachu: Response = await fetch(
+		`https://pokeapi.co/api/v2/pokemon/${pokemon}`
+	);
+	const pikachuJsoned: Promise<any> = pikachu.json();
+	pikachuJsoned.then((data) => {
+		console.log(data.types.length);
+		for (let i = 0; i < data.types.length; i++) {
+			typeParagraph = document.createElement('p')!;
+			typeParagraph.innerHTML = data.types[i].type.name;
+			typeParagraph.className = 'typeParagraph';
+			typesDiv.appendChild(typeParagraph);
+		}
+	});
+};
+
+getTypes('tyranitar');
