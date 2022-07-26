@@ -79,3 +79,17 @@ const getTypes = async (pokemon: string): Promise<void> => {
 };
 
 // getTypes('tyranitar');
+
+const statBar = (amount: number): void => {
+	let bar: Element = document.querySelector('.bar')!;
+	let barDiv: HTMLDivElement;
+
+	for (let i = 0; i < amount; i++) {
+		barDiv = document.createElement('div');
+		barDiv.classList.add('barDiv');
+		barDiv.style.height = '20px';
+		barDiv.style.width = '1px';
+		barDiv.style.backgroundColor = 'red';
+		bar?.appendChild(barDiv);
+	}
+};

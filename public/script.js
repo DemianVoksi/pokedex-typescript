@@ -72,3 +72,15 @@ const getTypes = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 // getTypes('tyranitar');
+const progressBar = (amount) => {
+    let bar = document.querySelector('.bar');
+    let barDiv;
+    for (let i = 0; i < amount; i++) {
+        barDiv = document.createElement('div');
+        barDiv.classList.add('barDiv');
+        barDiv.style.height = '20px';
+        barDiv.style.width = '1px';
+        barDiv.style.backgroundColor = 'red';
+        bar === null || bar === void 0 ? void 0 : bar.appendChild(barDiv);
+    }
+};
