@@ -72,7 +72,7 @@ const getTypes = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 // getTypes('tyranitar');
-const progressBar = (amount) => {
+const statBar = (amount) => {
     let bar = document.querySelector('.bar');
     let barDiv;
     for (let i = 0; i < amount; i++) {
@@ -82,5 +82,25 @@ const progressBar = (amount) => {
         barDiv.style.width = '1px';
         barDiv.style.backgroundColor = 'red';
         bar === null || bar === void 0 ? void 0 : bar.appendChild(barDiv);
+    }
+};
+const metricHeight = (input) => {
+    let centimeters = input * 10;
+    if (centimeters < 100) {
+        return `${centimeters} cm`;
+    }
+    else {
+        let meters = centimeters / 100;
+        return `${meters} m`;
+    }
+};
+const metricWeight = (input) => {
+    let grams = input * 100;
+    if (grams < 1000) {
+        return `0.${input} kg`;
+    }
+    else {
+        let kg = grams / 1000;
+        return `${kg} kg`;
     }
 };

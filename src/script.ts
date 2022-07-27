@@ -93,3 +93,25 @@ const statBar = (amount: number): void => {
 		bar?.appendChild(barDiv);
 	}
 };
+
+const metricHeight = (input: number): string => {
+	let centimeters: number = input * 10;
+
+	if (centimeters < 100) {
+		return `${centimeters} cm`;
+	} else {
+		let meters = centimeters / 100;
+		return `${meters} m`;
+	}
+};
+
+const metricWeight = (input: number): string => {
+	let grams = input * 100;
+
+	if (grams < 1000) {
+		return `0.${input} kg`;
+	} else {
+		let kg = grams / 1000;
+		return `${kg} kg`;
+	}
+};
