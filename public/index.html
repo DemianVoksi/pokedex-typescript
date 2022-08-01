@@ -9,76 +9,79 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="image-container">
-    <img class="pokemon-logo" src="../images/Pokémon_logo.svg.png"/>
-  </div>
-  <div class="search-wrapper">
-    <form class="form">
-      <input 
-      class="search-input" 
-      placeholder="Enter pokemon name" 
-      type="text"
-      maxlength="50"
-      />
-      <button 
-      class="search-btn"
-      type="submit"
-      >Get stats
-    </button>
-    </form>
-  </div>
-  <div class="name-description">
-    <p id="name-value">Name</p>
-    <p id="description-value">Description description des des des des</p>
-  </div>
-  <div class="pokedex-stats">
-    <div class="nonstats-nonbase">
-      <div class="non-stats">
-        <div class="sprite-container">
-            <img class="pokemon-sprite" src="../images/pikachu.png" />
-        </div>
-      </div>
-      <div class="nonbase-container">
-        <div class="nonbase-titles-container">
-          <p>National#</p>
-          <p>Type</p>
-          <p>Species</p>
-          <p>Height</p>
-          <p>Weight</p>
-          <p>Gender</p>
-          <p>Base experience</p>
-          <p>Capture rate</p>
+  <div class="page-container">
+    <div class="image-container">
+      <img class="pokemon-logo" src="../images/Pokémon_logo.svg.png"/>
+    </div>
+    <div class="search-wrapper">
+      <form class="form">
+        <input 
+        class="search-input" 
+        placeholder="Enter pokemon name" 
+        type="text"
+        maxlength="50"
+        />
+        <button 
+        class="search-btn"
+        type="submit"
+        >Get stats
+      </button>
+      </form>
+    </div>
+    <div class="name-description">
+      <p id="name-value"></p>
+      <p id="description-value"></p>
+    </div>
+    <div class="pokedex-stats">
+      <div class="nonstats-nonbase">
+        <div class="non-stats">
+          <div class="sprite-container">
+              <img class="pokemon-sprite" src="../images/pikachu.png" />
           </div>
-        <div class="nonbase-values-container">
-          <p id="national-number-value">National # value</p>
-          <p id="type-value">Type value</p>
-          <p id="species-value">Species value</p>
-          <p id="height-value">Height value</p>
-          <p id="weight-value">Weight value</p>
-          <p id="gender-value">Gender value</p>
-          <p id="base-experience-value">Base experience value</p>
-          <p id="capture-rate-value">Capture rate value</p>
+        </div>
+        <div class="nonbase-container">
+          <div class="nonbase-titles-container">
+            <p>National#</p>
+            <p>Type</p>
+            <p>Species</p>
+            <p>Height</p>
+            <p>Weight</p>
+            <p>Gender</p>
+            <p>Base experience</p>
+            <p>Capture rate</p>
+            </div>
+          <div class="nonbase-values-container">
+            <p id="national-number-value"></p>
+            <p id="type-value">Type</p>
+            <p id="species-value"></p>
+            <p id="height-value"></p>
+            <p id="weight-value"></p>
+            <p id="gender-value">Male Female</p>
+            <p id="base-experience-value"></p>
+            <p id="capture-rate-value"></p>
+          </div>
+        </div>
+      </div>
+      <div class="base-stats-container">
+        <div class="base-stats-title">
+          <p>HP</p>
+          <p>Attack</p>
+          <p>Defense</p>
+          <p>Special Attack</p>
+          <p>Special Defense</p>
+          <p>Speed</p>
+        </div>
+        <div class="base-stats-value">
+          <p id="hp-value"></p>
+          <p id="attack-value"></p>
+          <p id="defense-value"></p>
+          <p id="special-attack-value"></p>
+          <p id="special-defense-value"></p>
+          <p id="speed-value"></p>
         </div>
       </div>
     </div>
-    <div class="base-stats-container">
-      <div class="base-stats-title">
-        <p>HP</p>
-        <p>Attack</p>
-        <p>Defense</p>
-        <p>Special Attack</p>
-        <p>Special Defense</p>
-        <p>Speed</p>
-      </div>
-      <div class="base-stats-value">
-        <p id="hp-value">HP value</p>
-        <p id="attack-value">Attack value</p>
-        <p id="defense-value">Defense value</p>
-        <p id="special-attack-value">Special Attack value</p>
-        <p id="special-defense-value">Special Defense value</p>
-        <p id="speed-value">Speed value</p>
-      </div>
-    </div>
   </div>
+  
 </body>
 </html>

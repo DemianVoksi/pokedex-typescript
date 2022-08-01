@@ -15,6 +15,16 @@ body {
   background-color: var(--background-white);
 }
 
+.page-container {
+  width: 40%;
+  height: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-white);
+}
+
 .image-container {
   width: 100%;
   display: flex;
@@ -49,22 +59,31 @@ body {
 }
 
 .name-description {
+  margin-top: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #name-value {
   font-family: var(--ubuntu);
-  font-size: 20px;
+  font-size: 30px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 #description-value {
   font-family: var(--ubuntu);
   font-size: 13px;
   margin-left: 15px;
+  color: #808080;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 
