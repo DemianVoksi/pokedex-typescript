@@ -1,89 +1,23 @@
-// DAMAGE RELATIONS https://pokeapi.co/api/v2/type
-
-// IMAGE pokemon/ data.sprites.other['official-artwork'].front_default
-// NAME pokemon/ data.name
-// BASE EXP pokemon/ data.base_experience
-// ABILITY NAME pokemon/ data.abilities[0].ability.name trebat će for loop kao za types
-// ABILITY HIDDEN pokemon/ data.abilities[0].is_hidden
-// HEIGHT pokemon/ data.height (in decimetres)
-// WEIGHT pokemon/ data.weight (in hectograms/100g)
-// TYPE pokemon/ data.types[] for loop
-// HP pokemon/ data.stats[0].base_stat do 255
-// ATTACK pokemon/ data.stats[1].base_stat do 255
-// DEFENSE pokemon/ data.stats[2].base_stat do 255
-// SPECIAL ATTACK pokemon/ data.stats[3].base_stat do 255
-// SPECIAL DEFENSE pokemon/ data.stats[4].base_stat do 255
-// SPEED pokemon/ data.stats[5].base_stat do 255
-
-// GENDER pokemon-species/ data.gender_rate (in eights 1-8 chance of it being female, -1 == genderless)
-// DESCRIPTION pokemon-species/ data.flavor_text_entries[0]
-// SPECIES (pikachu: mouse pokemon) pokemon-species/ data.genera[7]
-// NUMBER pokemon-species/ data.pokedex_numbers[0].entry_number
-// CAPTURE RATE pokemon-species/ data.capture_rate do 255
-
 // pokemon logo https://commons.wikimedia.org/wiki/File:International_Pok%C3%A9mon_logo.svg
 
-let types: string[] = [];
-
-// console.log(types);
-
-// const getPikachu = async (pokemon: string): Promise<any> => {
-// 	// prvo varijable
-
-// 	const image: HTMLImageElement = document.createElement('img');
-// 	image.style.height = '200px';
-// 	image.style.width = '200px';
-// 	// onda fetch
-// 	const pikachu: Response = await fetch(
-// 		`https://pokeapi.co/api/v2/pokemon/${pokemon}`
-// 	);
-// 	const pikachuJsoned: Promise<any> = pikachu.json();
-// 	pikachuJsoned.then(
-// 		(data) => (image.src = data.sprites.other['official-artwork'].front_default)
-// 	);
-
-// 	// pa appendanje
-// 	document.querySelector('.image')?.append(image);
-// 	// return pikachuJsoned;
-// };
-
 const getPokemon = async (pokemon: string): Promise<any> => {
-	// get elements
-	// const nationalNumberValue: HTMLElement = document.getElementById(
-	// 	'national-number-value'
-	// )!; //
-	const typeValue: HTMLElement = document.getElementById('type-value')!;
-	// const speciesValue: HTMLElement = document.getElementById('species-value')!; //
-	// const heightValue: HTMLElement = document.getElementById('height-value')!;
-	// const weightValue: HTMLElement = document.getElementById('weight-value')!;
-	const genderValue: HTMLElement = document.getElementById('gender-value')!; //
-	// const baseExperienceValue: HTMLElement = document.getElementById(
-	// 	'base-experience-value'
-	// )!;
-	// const captureRateValue: HTMLElement =
-	// 	document.getElementById('capture-rate-value')!; //
-	// const nameValue: HTMLElement = document.getElementById('name-value')!;
-	const descriptionValue: HTMLElement =
-		document.getElementById('description-value')!; //
-	// const hpValue: HTMLElement = document.getElementById('hp-value')!;
-	// const attackValue: HTMLElement = document.getElementById('attack-value')!;
-	// const defenseValue: HTMLElement = document.getElementById('defense-value')!;
-	// const specialAttackValue: HTMLElement = document.getElementById(
-	// 	'special-attack-value'
-	// )!;
-	// const specialDefenseValue: HTMLElement = document.getElementById(
-	// 	'special-defense-value'
-	// )!;
-	// const speedValue: HTMLElement = document.getElementById('speed-value')!;
-
 	// fetch
 	const response: Response = await fetch(
 		`https://pokeapi.co/api/v2/pokemon/${pokemon}`
 	);
 	const resJsoned: Promise<any> = response.json();
 	resJsoned.then((data) => {
+		// species API
 		getPokemonSpecies(data.id);
-		console.log(data);
+
+		// types
+		getTypes(data.types);
+
+		// sprite
+		let image = document.getElementById('pokemon-sprite') as HTMLImageElement;
+		image.src = data.sprites.other['official-artwork'].front_default;
+
+		// other values
 		document.getElementById('name-value')!.innerHTML = capitalizeName(
 			data.name
 		);
@@ -105,16 +39,25 @@ const getPokemon = async (pokemon: string): Promise<any> => {
 		);
 		document.getElementById('base-experience-value')!.innerHTML =
 			data.base_experience;
+
+		// stat bars
+		statBar(data.stats[0].base_stat, 'hp-bar', '#00ff00');
+		statBar(data.stats[1].base_stat, 'attack-bar', '#ffa500');
+		statBar(data.stats[2].base_stat, 'defense-bar', '#add8d6');
+		statBar(data.stats[3].base_stat, 'special-attack-bar', '#ff0000');
+		statBar(data.stats[4].base_stat, 'special-defense-bar', '#00008b');
+		statBar(data.stats[5].base_stat, 'speed-bar', '#c0c0c0');
 	});
 };
 
 const getPokemonSpecies = async (id: number): Promise<any> => {
+	// fetch
 	const response: Response = await fetch(
 		`https://pokeapi.co/api/v2/pokemon-species/${id}`
 	);
 	const resJsoned: Promise<any> = response.json();
 	resJsoned.then((data) => {
-		console.log(data.flavor_text_entries[0]);
+		console.log(data);
 		document.getElementById('species-value')!.innerHTML = data.genera[7].genus;
 		document.getElementById('national-number-value')!.innerHTML =
 			data.pokedex_numbers[0].entry_number;
@@ -123,41 +66,44 @@ const getPokemonSpecies = async (id: number): Promise<any> => {
 		document.getElementById('description-value')!.innerText = breakFlavorText(
 			data.flavor_text_entries[0].flavor_text
 		);
+		document.getElementById('gender-value')!.innerHTML = getGenderRate(
+			data.gender_rate
+		);
 	});
 };
 
-getPokemon('pikachu');
+getPokemon('mewtwo');
 
-const getTypes = async (pokemon: string): Promise<void> => {
-	let typesDiv: Element = document.querySelector('.types')!;
-	let typeParagraph: Element;
-	const pikachu: Response = await fetch(
-		`https://pokeapi.co/api/v2/pokemon/${pokemon}`
+const getTypes = async (dataNode: any): Promise<void> => {
+	let typesDiv: Element = document.getElementById('type-value')!;
+	typesDiv.setAttribute(
+		'style',
+		'height: 15px; margin-bottom: 10px; display: flex; flex-direction: row;'
 	);
-	const pikachuJsoned: Promise<any> = pikachu.json();
-	pikachuJsoned.then((data) => {
-		console.log(data.types.length);
-		for (let i = 0; i < data.types.length; i++) {
-			typeParagraph = document.createElement('p')!;
-			typeParagraph.innerHTML = data.types[i].type.name;
-			typeParagraph.className = 'typeParagraph';
-			typesDiv.appendChild(typeParagraph);
-		}
-	});
+	let typeParagraph: Element;
+	for (let i = 0; i < dataNode.length; i++) {
+		typeParagraph = document.createElement('p')!;
+		typeParagraph.innerHTML = dataNode[i].type.name;
+		typeParagraph.className = 'typeParagraph';
+		typeParagraph.setAttribute('style', 'margin-right: 5px; margin: block;');
+		typesDiv.appendChild(typeParagraph);
+	}
 };
 
-// getTypes('tyranitar');
-
-const statBar = (amount: number): void => {
-	let bar: Element = document.querySelector('.bar')!;
+const statBar = (amount: number, elemId: string, color: string): void => {
+	let bar: Element = document.getElementById(elemId)!;
+	bar.setAttribute(
+		'style',
+		'display: flex; flex-direction: row; justify-content: center; align-items: center; margin-left: 15px;'
+	);
 	let barDiv: HTMLDivElement;
 
-	for (let i = 0; i < amount; i++) {
+	for (let i = 0; i < amount * 1.5; i++) {
 		barDiv = document.createElement('div');
 		barDiv.classList.add('barDiv');
-		barDiv.style.height = '20px';
+		barDiv.style.height = '10px';
 		barDiv.style.width = '1px';
-		barDiv.style.backgroundColor = 'red';
+		barDiv.style.backgroundColor = color;
 		bar?.appendChild(barDiv);
 	}
 };
@@ -181,6 +127,17 @@ const metricWeight = (input: number): string => {
 	} else {
 		let kg = grams / 1000;
 		return `${kg} kg`;
+	}
+};
+
+const getGenderRate = (input: number): string => {
+	if (input === -1) {
+		return 'Genderless';
+	} else {
+		let femalePercentage: number = Number(((input / 8) * 100).toFixed(1));
+		let malePercentage: number = 100 - femalePercentage;
+		let result = `${femalePercentage}% female, ${malePercentage}% male`;
+		return result;
 	}
 };
 

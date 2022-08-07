@@ -29,14 +29,14 @@
       </form>
     </div>
     <div class="name-description">
-      <p id="name-value"></p>
-      <p id="description-value"></p>
+      <h1 id="name-value"></h1>
+      <div id="description-value"></div>
     </div>
     <div class="pokedex-stats">
       <div class="nonstats-nonbase">
         <div class="non-stats">
           <div class="sprite-container">
-              <img class="pokemon-sprite" src="../images/pikachu.png" />
+              <img id="pokemon-sprite" />
           </div>
         </div>
         <div class="nonbase-container">
@@ -52,11 +52,11 @@
             </div>
           <div class="nonbase-values-container">
             <p id="national-number-value"></p>
-            <p id="type-value">Type</p>
+            <p id="type-value"></p>
             <p id="species-value"></p>
             <p id="height-value"></p>
             <p id="weight-value"></p>
-            <p id="gender-value">Male Female</p>
+            <p id="gender-value"></p>
             <p id="base-experience-value"></p>
             <p id="capture-rate-value"></p>
           </div>
@@ -72,12 +72,30 @@
           <p>Speed</p>
         </div>
         <div class="base-stats-value">
-          <p id="hp-value"></p>
-          <p id="attack-value"></p>
-          <p id="defense-value"></p>
-          <p id="special-attack-value"></p>
-          <p id="special-defense-value"></p>
-          <p id="speed-value"></p>
+          <div id="hp-container" class="container">
+            <p id="hp-value"></p>
+            <div id="hp-bar" class="bar"></div>
+          </div>
+          <div id="attack-container"class="container">
+            <p id="attack-value"></p>
+            <div id="attack-bar" class="bar"></div>
+          </div>
+          <div id="defense-container" class="container">
+            <p id="defense-value"></p>
+            <div id="defense-bar" class="bar"></div>
+          </div>
+          <div id="special-attack-container" class="container">
+            <p id="special-attack-value"></p>
+            <div id="special-attack-bar" class="bar"></div>
+          </div>
+          <div id="special-defense-container" class="container">
+            <p id="special-defense-value"></p>
+            <div id="special-defense-bar" class="bar"></div>
+          </div>
+          <div id="speed-container" class="container">
+            <p id="speed-value"></p>
+            <div id="speed-bar" class="bar"></div>
+          </div>
         </div>
       </div>
     </div>

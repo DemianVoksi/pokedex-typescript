@@ -103,7 +103,7 @@ body {
   height: 200px;
 }
 
-.pokemon-sprite {
+#pokemon-sprite {
   width: 200px;
   height: 200px;
 }
@@ -136,11 +136,29 @@ body {
 .base-stats-title {
   color: #808080
 }
+
+#type-value {
+  display: flex;
+  flex-direction: row;
+}
+
+p {
+  height: 15px;
+  margin-bottom: 10px;
+}
+
 /* .bar {
   margin-top: 30px;
   height: 20px;
   width: 255px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 } */
 
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
