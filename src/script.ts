@@ -1,53 +1,48 @@
 // pokemon logo https://commons.wikimedia.org/wiki/File:International_Pok%C3%A9mon_logo.svg
+// element.classList.add
 
 const getPokemon = async (pokemon: string): Promise<any> => {
 	// fetch
 	const response: Response = await fetch(
 		`https://pokeapi.co/api/v2/pokemon/${pokemon}`
 	);
-	const resJsoned: Promise<any> = response.json();
-	resJsoned.then((data) => {
-		// species API
-		getPokemonSpecies(data.id);
+	const data = await response.json();
+	// species API
+	getPokemonSpecies(data.id);
 
-		// types
-		getTypes(data.types);
+	// types
+	getTypes(data.types);
 
-		// sprite
-		let image = document.getElementById('pokemon-sprite') as HTMLImageElement;
-		image.src = data.sprites.other['official-artwork'].front_default;
+	// sprite
+	let image = document.getElementById('pokemon-sprite') as HTMLImageElement;
+	image.src = data.sprites.other['official-artwork'].front_default;
 
-		// other values
-		document.getElementById('name-value')!.innerHTML = capitalizeName(
-			data.name
-		);
-		document.getElementById('hp-value')!.innerHTML = data.stats[0].base_stat;
-		document.getElementById('attack-value')!.innerHTML =
-			data.stats[1].base_stat;
-		document.getElementById('defense-value')!.innerHTML =
-			data.stats[2].base_stat;
-		document.getElementById('special-attack-value')!.innerHTML =
-			data.stats[3].base_stat;
-		document.getElementById('special-defense-value')!.innerHTML =
-			data.stats[4].base_stat;
-		document.getElementById('speed-value')!.innerHTML = data.stats[5].base_stat;
-		document.getElementById('height-value')!.innerHTML = metricHeight(
-			data.height
-		);
-		document.getElementById('weight-value')!.innerHTML = metricWeight(
-			data.weight
-		);
-		document.getElementById('base-experience-value')!.innerHTML =
-			data.base_experience;
+	// other values
+	document.getElementById('name-value')!.innerHTML = capitalizeName(data.name);
+	document.getElementById('hp-value')!.innerHTML = data.stats[0].base_stat;
+	document.getElementById('attack-value')!.innerHTML = data.stats[1].base_stat;
+	document.getElementById('defense-value')!.innerHTML = data.stats[2].base_stat;
+	document.getElementById('special-attack-value')!.innerHTML =
+		data.stats[3].base_stat;
+	document.getElementById('special-defense-value')!.innerHTML =
+		data.stats[4].base_stat;
+	document.getElementById('speed-value')!.innerHTML = data.stats[5].base_stat;
+	document.getElementById('height-value')!.innerHTML = metricHeight(
+		data.height
+	);
+	document.getElementById('weight-value')!.innerHTML = metricWeight(
+		data.weight
+	);
+	document.getElementById('base-experience-value')!.innerHTML =
+		data.base_experience;
 
-		// stat bars
-		statBar(data.stats[0].base_stat, 'hp-bar', '#00ff00');
-		statBar(data.stats[1].base_stat, 'attack-bar', '#ffa500');
-		statBar(data.stats[2].base_stat, 'defense-bar', '#add8d6');
-		statBar(data.stats[3].base_stat, 'special-attack-bar', '#ff0000');
-		statBar(data.stats[4].base_stat, 'special-defense-bar', '#00008b');
-		statBar(data.stats[5].base_stat, 'speed-bar', '#c0c0c0');
-	});
+	// stat bars
+	statBar(data.stats[0].base_stat, 'hp-bar', '#00ff00');
+	statBar(data.stats[1].base_stat, 'attack-bar', '#ffa500');
+	statBar(data.stats[2].base_stat, 'defense-bar', '#add8d6');
+	statBar(data.stats[3].base_stat, 'special-attack-bar', '#ff0000');
+	statBar(data.stats[4].base_stat, 'special-defense-bar', '#00008b');
+	statBar(data.stats[5].base_stat, 'speed-bar', '#c0c0c0');
 };
 
 const getPokemonSpecies = async (id: number): Promise<any> => {

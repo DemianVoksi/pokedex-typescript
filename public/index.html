@@ -1,105 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="script.js" defer></script>
-  <link rel="stylesheet" href="styles.css" />
-  <title>Document</title>
-</head>
-<body>
-  <div class="page-container">
-    <div class="image-container">
-      <img class="pokemon-logo" src="../images/Pokémon_logo.svg.png"/>
-    </div>
-    <div class="search-wrapper">
-      <form class="form">
-        <input 
-        class="search-input" 
-        placeholder="Enter pokemon name" 
-        type="text"
-        maxlength="50"
-        />
-        <button 
-        class="search-btn"
-        type="submit"
-        >Get stats
-      </button>
-      </form>
-    </div>
-    <div class="name-description">
-      <h1 id="name-value"></h1>
-      <div id="description-value"></div>
-    </div>
-    <div class="pokedex-stats">
-      <div class="nonstats-nonbase">
-        <div class="non-stats">
-          <div class="sprite-container">
-              <img id="pokemon-sprite" />
-          </div>
-        </div>
-        <div class="nonbase-container">
-          <div class="nonbase-titles-container">
-            <p>National#</p>
-            <p>Type</p>
-            <p>Species</p>
-            <p>Height</p>
-            <p>Weight</p>
-            <p>Gender</p>
-            <p>Base experience</p>
-            <p>Capture rate</p>
-            </div>
-          <div class="nonbase-values-container">
-            <p id="national-number-value"></p>
-            <p id="type-value"></p>
-            <p id="species-value"></p>
-            <p id="height-value"></p>
-            <p id="weight-value"></p>
-            <p id="gender-value"></p>
-            <p id="base-experience-value"></p>
-            <p id="capture-rate-value"></p>
-          </div>
-        </div>
-      </div>
-      <div class="base-stats-container">
-        <div class="base-stats-title">
-          <p>HP</p>
-          <p>Attack</p>
-          <p>Defense</p>
-          <p>Special Attack</p>
-          <p>Special Defense</p>
-          <p>Speed</p>
-        </div>
-        <div class="base-stats-value">
-          <div id="hp-container" class="container">
-            <p id="hp-value"></p>
-            <div id="hp-bar" class="bar"></div>
-          </div>
-          <div id="attack-container"class="container">
-            <p id="attack-value"></p>
-            <div id="attack-bar" class="bar"></div>
-          </div>
-          <div id="defense-container" class="container">
-            <p id="defense-value"></p>
-            <div id="defense-bar" class="bar"></div>
-          </div>
-          <div id="special-attack-container" class="container">
-            <p id="special-attack-value"></p>
-            <div id="special-attack-bar" class="bar"></div>
-          </div>
-          <div id="special-defense-container" class="container">
-            <p id="special-defense-value"></p>
-            <div id="special-defense-bar" class="bar"></div>
-          </div>
-          <div id="speed-container" class="container">
-            <p id="speed-value"></p>
-            <div id="speed-bar" class="bar"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="script.js" defer></script>
+		<link rel="stylesheet" href="styles.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="page-container">
+			<div class="image-container">
+				<img class="pokemon-logo" src="../images/Pokémon_logo.svg.png" />
+			</div>
+			<div class="search-wrapper">
+				<form class="form">
+					<input
+						class="search-input"
+						placeholder="Enter pokemon name"
+						type="text"
+						maxlength="50"
+					/>
+					<button class="search-btn" type="submit">Get stats</button>
+				</form>
+			</div>
+			<div class="name-description">
+				<h1 id="name-value"></h1>
+				<div id="description-value"></div>
+			</div>
+			<div class="pokedex-stats">
+				<div class="nonstats-nonbase">
+					<div class="non-stats">
+						<div class="sprite-container">
+							<img id="pokemon-sprite" />
+						</div>
+					</div>
+					<div class="nonbase-container">
+						<div class="nonbase-titles-container">
+							<p>National#</p>
+							<p>Type</p>
+							<p>Species</p>
+							<p>Height</p>
+							<p>Weight</p>
+							<p>Gender</p>
+							<p>Base experience</p>
+							<p>Capture rate</p>
+						</div>
+						<div class="nonbase-values-container">
+							<p id="national-number-value"></p>
+							<p id="type-value"></p>
+							<p id="species-value"></p>
+							<p id="height-value"></p>
+							<p id="weight-value"></p>
+							<p id="gender-value"></p>
+							<p id="base-experience-value"></p>
+							<p id="capture-rate-value"></p>
+						</div>
+					</div>
+				</div>
+				<div class="base-stats-container">
+					<div class="base-stats-title">
+						<p>HP</p>
+						<p>Attack</p>
+						<p>Defense</p>
+						<p>Special Attack</p>
+						<p>Special Defense</p>
+						<p>Speed</p>
+					</div>
+					<div class="base-stats-value">
+						<div id="hp-container" class="container">
+							<p id="hp-value"></p>
+							<div id="hp-bar" class="bar"></div>
+						</div>
+						<div id="attack-container" class="container">
+							<p id="attack-value"></p>
+							<div id="attack-bar" class="bar"></div>
+						</div>
+						<div id="defense-container" class="container">
+							<p id="defense-value"></p>
+							<div id="defense-bar" class="bar"></div>
+						</div>
+						<div id="special-attack-container" class="container">
+							<p id="special-attack-value"></p>
+							<div id="special-attack-bar" class="bar"></div>
+						</div>
+						<div id="special-defense-container" class="container">
+							<p id="special-defense-value"></p>
+							<div id="special-defense-bar" class="bar"></div>
+						</div>
+						<div id="speed-container" class="container">
+							<p id="speed-value"></p>
+							<div id="speed-bar" class="bar"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
