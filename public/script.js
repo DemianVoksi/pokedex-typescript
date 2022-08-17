@@ -10,6 +10,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+/*
+ie. Height
+
+get id height-container
+create div
+set id to height-title and height-value, and class (classList.add()) to appended-nonbase
+set inner html to height
+append to height-container
+
+*/
 const getPokemon = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
     // fetch
     const response = yield fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
@@ -58,7 +68,7 @@ const getPokemonSpecies = (id) => __awaiter(void 0, void 0, void 0, function* ()
         document.getElementById('gender-value').innerHTML = getGenderRate(data.gender_rate);
     });
 });
-getPokemon('mewtwo');
+getPokemon('pikachu');
 const getTypes = (dataNode) => __awaiter(void 0, void 0, void 0, function* () {
     let typesDiv = document.getElementById('type-value');
     typesDiv.setAttribute('style', 'height: 15px; margin-bottom: 10px; display: flex; flex-direction: row;');

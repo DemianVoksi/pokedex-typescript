@@ -1,6 +1,17 @@
 // pokemon logo https://commons.wikimedia.org/wiki/File:International_Pok%C3%A9mon_logo.svg
 // element.classList.add
 
+/*
+ie. Height
+
+get id height-container
+create div 
+set id to height-title and height-value, and class (classList.add()) to appended-nonbase
+set inner html to height
+append to height-container
+
+*/
+
 const getPokemon = async (pokemon: string): Promise<any> => {
 	// fetch
 	const response: Response = await fetch(
@@ -67,7 +78,7 @@ const getPokemonSpecies = async (id: number): Promise<any> => {
 	});
 };
 
-getPokemon('mewtwo');
+getPokemon('pikachu');
 
 const getTypes = async (dataNode: any): Promise<void> => {
 	let typesDiv: Element = document.getElementById('type-value')!;
