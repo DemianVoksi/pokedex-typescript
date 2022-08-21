@@ -86,6 +86,7 @@ body {
   align-items: center;
 }
 
+/* DO OVDJE SVE VALJA */
 
 .pokedex-stats {
   margin-top: 10px;
@@ -110,7 +111,26 @@ body {
 
 .nonbase-container {
   display: flex;
+  flex-direction: column;
+  font-family: var(--ubuntu);
+  font-size: 15px;
+  margin-left: 40px;
+}
+
+.nonbase-stat {
+  display: flex;
   flex-direction: row;
+  height: 40px;
+}
+
+#nationalNum-value,
+#species-value,
+#height-value,
+#weight-value,
+#gender-value,
+#baseExp-value,
+#captureRate-value {
+  margin-left: 3px;
 }
 
 .base-stats-container {
@@ -137,15 +157,31 @@ body {
   color: #808080
 }
 
+#type-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 #type-value {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-p {
+.typeParagraph {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3px;
+}
+
+/* p {
   height: 15px;
   margin-bottom: 10px;
-}
+} */
 
 /* .bar {
   margin-top: 30px;
@@ -155,6 +191,13 @@ p {
   flex-direction: row;
   align-items: center;
 } */
+
+.bar {
+  display: flex; 
+  flex-direction: row;
+  justify-content: center; 
+  align-items: center; 
+  margin-left: 15px;}
 
 .container {
   display: flex;

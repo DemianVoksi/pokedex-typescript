@@ -40,7 +40,7 @@ const fillContainers = () => {
     fillSingleContainerNonbase('type-container', 'p', 'appended-class', 'type-title', 'type-value');
     fillSingleContainerNonbase('species-container', 'p', 'appended-class', 'species-title', 'species-value');
     fillSingleContainerNonbase('height-container', 'p', 'appended-class', 'height-title', 'height-value');
-    fillSingleContainerNonbase('weight-container', 'p', 'appended-class', 'height-title', 'weight-value');
+    fillSingleContainerNonbase('weight-container', 'p', 'appended-class', 'weight-title', 'weight-value');
     fillSingleContainerNonbase('gender-container', 'p', 'appended-class', 'gender-title', 'gender-value');
     fillSingleContainerNonbase('baseExp-container', 'p', 'appended-class', 'baseExp-title', 'baseExp-value');
     fillSingleContainerNonbase('captureRate-container', 'p', 'appended-class', 'captureRate-title', 'captureRate-value');
@@ -87,9 +87,9 @@ const getPokemon = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
     document.getElementById('hp-value').innerHTML = data.stats[0].base_stat;
     document.getElementById('attack-value').innerHTML = data.stats[1].base_stat;
     document.getElementById('defense-value').innerHTML = data.stats[2].base_stat;
-    document.getElementById('special-attack-value').innerHTML =
+    document.getElementById('specialAttack-value').innerHTML =
         data.stats[3].base_stat;
-    document.getElementById('special-defense-value').innerHTML =
+    document.getElementById('specialDefense-value').innerHTML =
         data.stats[4].base_stat;
     document.getElementById('speed-value').innerHTML = data.stats[5].base_stat;
     document.getElementById('height-value').innerHTML = metricHeight(data.height);
@@ -99,8 +99,8 @@ const getPokemon = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
     statBar(data.stats[0].base_stat, 'hp-bar-id', '#00ff00');
     statBar(data.stats[1].base_stat, 'attack-bar-id', '#ffa500');
     statBar(data.stats[2].base_stat, 'defense-bar-id', '#add8d6');
-    statBar(data.stats[3].base_stat, 'special-attack-bar-id', '#ff0000');
-    statBar(data.stats[4].base_stat, 'special-defense-bar-id', '#00008b');
+    statBar(data.stats[3].base_stat, 'specialAttack-bar-id', '#ff0000');
+    statBar(data.stats[4].base_stat, 'specialDefense-bar-id', '#00008b');
     statBar(data.stats[5].base_stat, 'speed-bar-id', '#c0c0c0');
 });
 const getPokemonSpecies = (id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -117,22 +117,20 @@ const getPokemonSpecies = (id) => __awaiter(void 0, void 0, void 0, function* ()
         document.getElementById('gender-value').innerHTML = getGenderRate(data.gender_rate);
     });
 });
-getPokemon('pikachu');
+getPokemon('torterra');
 const getTypes = (dataNode) => __awaiter(void 0, void 0, void 0, function* () {
     let typesDiv = document.getElementById('type-value');
-    typesDiv.setAttribute('style', 'height: 15px; margin-bottom: 10px; display: flex; flex-direction: row;');
     let typeParagraph;
     for (let i = 0; i < dataNode.length; i++) {
         typeParagraph = document.createElement('p');
         typeParagraph.innerHTML = dataNode[i].type.name;
         typeParagraph.className = 'typeParagraph';
-        typeParagraph.setAttribute('style', 'margin-right: 5px; margin: block;');
         typesDiv.appendChild(typeParagraph);
     }
 });
 const statBar = (amount, elemId, color) => {
     let bar = document.getElementById(elemId);
-    bar.setAttribute('style', 'display: flex; flex-direction: row; justify-content: center; align-items: center; margin-left: 15px;');
+    bar.classList.add('bar');
     let barDiv;
     for (let i = 0; i < amount * 1.5; i++) {
         barDiv = document.createElement('div');

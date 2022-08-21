@@ -80,7 +80,7 @@ const fillContainers = (): void => {
 		'weight-container',
 		'p',
 		'appended-class',
-		'height-title',
+		'weight-title',
 		'weight-value'
 	);
 
@@ -175,7 +175,7 @@ const fillContainers = (): void => {
 	);
 };
 
-const addTitles = () => {
+const addTitles = (): void => {
 	document.getElementById('nationalNum-title')!.innerHTML = 'National #:';
 	document.getElementById('type-title')!.innerHTML = 'Type:';
 	document.getElementById('species-title')!.innerHTML = 'Species:';
@@ -219,9 +219,9 @@ const getPokemon = async (pokemon: string): Promise<any> => {
 	document.getElementById('hp-value')!.innerHTML = data.stats[0].base_stat;
 	document.getElementById('attack-value')!.innerHTML = data.stats[1].base_stat;
 	document.getElementById('defense-value')!.innerHTML = data.stats[2].base_stat;
-	document.getElementById('special-attack-value')!.innerHTML =
+	document.getElementById('specialAttack-value')!.innerHTML =
 		data.stats[3].base_stat;
-	document.getElementById('special-defense-value')!.innerHTML =
+	document.getElementById('specialDefense-value')!.innerHTML =
 		data.stats[4].base_stat;
 	document.getElementById('speed-value')!.innerHTML = data.stats[5].base_stat;
 	document.getElementById('height-value')!.innerHTML = metricHeight(
@@ -236,8 +236,8 @@ const getPokemon = async (pokemon: string): Promise<any> => {
 	statBar(data.stats[0].base_stat, 'hp-bar-id', '#00ff00');
 	statBar(data.stats[1].base_stat, 'attack-bar-id', '#ffa500');
 	statBar(data.stats[2].base_stat, 'defense-bar-id', '#add8d6');
-	statBar(data.stats[3].base_stat, 'special-attack-bar-id', '#ff0000');
-	statBar(data.stats[4].base_stat, 'special-defense-bar-id', '#00008b');
+	statBar(data.stats[3].base_stat, 'specialAttack-bar-id', '#ff0000');
+	statBar(data.stats[4].base_stat, 'specialDefense-bar-id', '#00008b');
 	statBar(data.stats[5].base_stat, 'speed-bar-id', '#c0c0c0');
 };
 
@@ -264,30 +264,22 @@ const getPokemonSpecies = async (id: number): Promise<any> => {
 	});
 };
 
-getPokemon('pikachu');
+getPokemon('torterra');
 
 const getTypes = async (dataNode: any): Promise<void> => {
 	let typesDiv: Element = document.getElementById('type-value')!;
-	typesDiv.setAttribute(
-		'style',
-		'height: 15px; margin-bottom: 10px; display: flex; flex-direction: row;'
-	);
 	let typeParagraph: Element;
 	for (let i = 0; i < dataNode.length; i++) {
 		typeParagraph = document.createElement('p')!;
 		typeParagraph.innerHTML = dataNode[i].type.name;
 		typeParagraph.className = 'typeParagraph';
-		typeParagraph.setAttribute('style', 'margin-right: 5px; margin: block;');
 		typesDiv.appendChild(typeParagraph);
 	}
 };
 
 const statBar = (amount: number, elemId: string, color: string): void => {
 	let bar: Element = document.getElementById(elemId)!;
-	bar.setAttribute(
-		'style',
-		'display: flex; flex-direction: row; justify-content: center; align-items: center; margin-left: 15px;'
-	);
+	bar.classList.add('bar');
 	let barDiv: HTMLDivElement;
 
 	for (let i = 0; i < amount * 1.5; i++) {
