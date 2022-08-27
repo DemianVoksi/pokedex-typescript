@@ -133,9 +133,32 @@ body {
   margin-left: 3px;
 }
 
+#nationalNum-title,
+#type-title,
+#species-title,
+#height-title,
+#weight-title,
+#gender-title,
+#baseExp-title,
+#captureRate-title,
+#hp-title,
+#attack-title,
+#defense-title,
+#specialAttack-title,
+#specialDefense-title,
+#speed-title {
+  color: #808080;
+}
+
 .base-stats-container {
   display: flex;
+  flex-direction: column;
+}
+
+.base-stat {
+  display: flex;
   flex-direction: row;
+  height: 30px;
 }
 
 .nonbase-titles-container,
@@ -178,6 +201,14 @@ body {
   margin-left: 3px;
 }
 
+#hp-title,
+#hp-value {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+}
+
 /* p {
   height: 15px;
   margin-bottom: 10px;
@@ -197,7 +228,9 @@ body {
   flex-direction: row;
   justify-content: center; 
   align-items: center; 
-  margin-left: 15px;}
+  margin-left: 15px;
+  height: 30px;
+}
 
 .container {
   display: flex;
