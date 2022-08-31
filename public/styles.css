@@ -86,8 +86,6 @@ body {
   align-items: center;
 }
 
-/* DO OVDJE SVE VALJA */
-
 .pokedex-stats {
   margin-top: 10px;
   display: flex;
@@ -148,6 +146,27 @@ body {
 #specialDefense-title,
 #speed-title {
   color: #808080;
+  width: 120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-family: var(--ubuntu);
+  font-size: 15px;
+}
+
+#hp-value,
+#attack-value,
+#defense-value,
+#specialAttack-value,
+#specialDefense-value,
+#speed-value {
+  width: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 5px;
+  font-family: var(--ubuntu);
+  font-size: 15px;
 }
 
 .base-stats-container {
@@ -202,26 +221,21 @@ body {
 }
 
 #hp-title,
-#hp-value {
+#hp-value,
+#attack-title,
+#attack-value,
+#defense-title,
+#defense-value,
+#specialAttack-title,
+#specialAttack-value,
+#specialDefense-title,
+#specialDefense-value,
+#speed-title,
+#speed-value {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
   align-items: center;
 }
-
-/* p {
-  height: 15px;
-  margin-bottom: 10px;
-} */
-
-/* .bar {
-  margin-top: 30px;
-  height: 20px;
-  width: 255px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-} */
 
 .bar {
   display: flex; 

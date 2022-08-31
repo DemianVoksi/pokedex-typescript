@@ -61,7 +61,7 @@ const addTitles = () => {
     document.getElementById('baseExp-title').innerHTML = 'Base experience:';
     document.getElementById('captureRate-title').innerHTML = 'Capture rate:';
     document.getElementById('hp-title').innerHTML = 'HP:';
-    document.getElementById('attack-title').innerHTML = 'Atack:';
+    document.getElementById('attack-title').innerHTML = 'Attack:';
     document.getElementById('defense-title').innerHTML = 'Defense:';
     document.getElementById('specialAttack-title').innerHTML = 'Special attack:';
     document.getElementById('specialDefense-title').innerHTML =
@@ -117,7 +117,6 @@ const getPokemonSpecies = (id) => __awaiter(void 0, void 0, void 0, function* ()
         document.getElementById('gender-value').innerHTML = getGenderRate(data.gender_rate);
     });
 });
-getPokemon('torterra');
 const getTypes = (dataNode) => __awaiter(void 0, void 0, void 0, function* () {
     let typesDiv = document.getElementById('type-value');
     let typeParagraph;
@@ -184,3 +183,30 @@ const breakFlavorText = (input) => {
 const capitalizeName = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1);
 };
+const removeChildren = (id) => {
+    const divId = document.getElementById(id);
+    while (divId.firstChild) {
+        divId.removeChild(divId.lastChild);
+    }
+};
+const form = document.getElementById('form');
+const input = document.getElementById('search-input');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    removeChildren('nationalNum-container');
+    removeChildren('type-container');
+    removeChildren('species-container');
+    removeChildren('height-container');
+    removeChildren('weight-container');
+    removeChildren('gender-container');
+    removeChildren('baseExp-container');
+    removeChildren('captureRate-container');
+    removeChildren('hp-container');
+    removeChildren('attack-container');
+    removeChildren('defense-container');
+    removeChildren('specialAttack-container');
+    removeChildren('specialDefense-container');
+    removeChildren('speed-container');
+    let inputValue = input.value.toLowerCase();
+    getPokemon(inputValue);
+});

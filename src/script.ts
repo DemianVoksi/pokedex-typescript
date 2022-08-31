@@ -186,7 +186,7 @@ const addTitles = (): void => {
 	document.getElementById('captureRate-title')!.innerHTML = 'Capture rate:';
 
 	document.getElementById('hp-title')!.innerHTML = 'HP:';
-	document.getElementById('attack-title')!.innerHTML = 'Atack:';
+	document.getElementById('attack-title')!.innerHTML = 'Attack:';
 	document.getElementById('defense-title')!.innerHTML = 'Defense:';
 	document.getElementById('specialAttack-title')!.innerHTML = 'Special attack:';
 	document.getElementById('specialDefense-title')!.innerHTML =
@@ -264,8 +264,6 @@ const getPokemonSpecies = async (id: number): Promise<any> => {
 	});
 };
 
-getPokemon('torterra');
-
 const getTypes = async (dataNode: any): Promise<void> => {
 	let typesDiv: Element = document.getElementById('type-value')!;
 	let typeParagraph: Element;
@@ -339,3 +337,33 @@ const breakFlavorText = (input: string): string => {
 const capitalizeName = (name: string): string => {
 	return name.charAt(0).toUpperCase() + name.slice(1);
 };
+
+const removeChildren = (id: string): void => {
+	const divId = document.getElementById(id)!;
+	while (divId.firstChild) {
+		divId.removeChild(divId.lastChild!);
+	}
+};
+
+const form: HTMLElement = document.getElementById('form')!;
+const input = <HTMLInputElement>document.getElementById('search-input');
+
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	removeChildren('nationalNum-container');
+	removeChildren('type-container');
+	removeChildren('species-container');
+	removeChildren('height-container');
+	removeChildren('weight-container');
+	removeChildren('gender-container');
+	removeChildren('baseExp-container');
+	removeChildren('captureRate-container');
+	removeChildren('hp-container');
+	removeChildren('attack-container');
+	removeChildren('defense-container');
+	removeChildren('specialAttack-container');
+	removeChildren('specialDefense-container');
+	removeChildren('speed-container');
+	let inputValue: string = input.value.toLowerCase();
+	getPokemon(inputValue);
+});
