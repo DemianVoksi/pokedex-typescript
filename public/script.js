@@ -80,7 +80,10 @@ const getPokemon = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
     // types
     getTypes(data.types);
     // sprite
-    let image = document.getElementById('pokemon-sprite');
+    let imageContainer = document.getElementById('sprite-container-id');
+    let image = document.createElement('img');
+    imageContainer === null || imageContainer === void 0 ? void 0 : imageContainer.appendChild(image);
+    image.id = 'pokemon-sprite';
     image.src = data.sprites.other['official-artwork'].front_default;
     // other values
     document.getElementById('name-value').innerHTML = capitalizeName(data.name);
@@ -106,16 +109,14 @@ const getPokemon = (pokemon) => __awaiter(void 0, void 0, void 0, function* () {
 const getPokemonSpecies = (id) => __awaiter(void 0, void 0, void 0, function* () {
     // fetch
     const response = yield fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
-    const resJsoned = response.json();
-    resJsoned.then((data) => {
-        console.log(data);
-        document.getElementById('species-value').innerHTML = data.genera[7].genus;
-        document.getElementById('nationalNum-value').innerHTML =
-            data.pokedex_numbers[0].entry_number;
-        document.getElementById('captureRate-value').innerHTML = capturePercentage(data.capture_rate);
-        document.getElementById('description-value').innerText = breakFlavorText(data.flavor_text_entries[0].flavor_text);
-        document.getElementById('gender-value').innerHTML = getGenderRate(data.gender_rate);
-    });
+    const data = yield response.json();
+    console.log(data);
+    document.getElementById('species-value').innerHTML = data.genera[7].genus;
+    document.getElementById('nationalNum-value').innerHTML =
+        data.pokedex_numbers[0].entry_number;
+    document.getElementById('captureRate-value').innerHTML = capturePercentage(data.capture_rate);
+    document.getElementById('description-value').innerText = breakFlavorText(data.flavor_text_entries[0].flavor_text);
+    document.getElementById('gender-value').innerHTML = getGenderRate(data.gender_rate);
 });
 const getTypes = (dataNode) => __awaiter(void 0, void 0, void 0, function* () {
     let typesDiv = document.getElementById('type-value');
@@ -191,8 +192,12 @@ const removeChildren = (id) => {
 };
 const form = document.getElementById('form');
 const input = document.getElementById('search-input');
+let image = document.getElementById('pokemon-sprite');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    removeChildren('name-value');
+    removeChildren('description-value');
+    removeChildren('sprite-container-id');
     removeChildren('nationalNum-container');
     removeChildren('type-container');
     removeChildren('species-container');
@@ -209,4 +214,5 @@ form.addEventListener('submit', (e) => {
     removeChildren('speed-container');
     let inputValue = input.value.toLowerCase();
     getPokemon(inputValue);
+    input.value = '';
 });

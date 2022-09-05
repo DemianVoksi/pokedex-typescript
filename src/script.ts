@@ -211,7 +211,10 @@ const getPokemon = async (pokemon: string): Promise<any> => {
 	getTypes(data.types);
 
 	// sprite
-	let image = document.getElementById('pokemon-sprite') as HTMLImageElement;
+	let imageContainer = document.getElementById('sprite-container-id');
+	let image: HTMLImageElement = document.createElement('img');
+	imageContainer?.appendChild(image);
+	image.id = 'pokemon-sprite';
 	image.src = data.sprites.other['official-artwork'].front_default;
 
 	// other values
@@ -246,22 +249,21 @@ const getPokemonSpecies = async (id: number): Promise<any> => {
 	const response: Response = await fetch(
 		`https://pokeapi.co/api/v2/pokemon-species/${id}`
 	);
-	const resJsoned: Promise<any> = response.json();
-	resJsoned.then((data) => {
-		console.log(data);
-		document.getElementById('species-value')!.innerHTML = data.genera[7].genus;
-		document.getElementById('nationalNum-value')!.innerHTML =
-			data.pokedex_numbers[0].entry_number;
-		document.getElementById('captureRate-value')!.innerHTML = capturePercentage(
-			data.capture_rate
-		);
-		document.getElementById('description-value')!.innerText = breakFlavorText(
-			data.flavor_text_entries[0].flavor_text
-		);
-		document.getElementById('gender-value')!.innerHTML = getGenderRate(
-			data.gender_rate
-		);
-	});
+	const data = await response.json();
+
+	console.log(data);
+	document.getElementById('species-value')!.innerHTML = data.genera[7].genus;
+	document.getElementById('nationalNum-value')!.innerHTML =
+		data.pokedex_numbers[0].entry_number;
+	document.getElementById('captureRate-value')!.innerHTML = capturePercentage(
+		data.capture_rate
+	);
+	document.getElementById('description-value')!.innerText = breakFlavorText(
+		data.flavor_text_entries[0].flavor_text
+	);
+	document.getElementById('gender-value')!.innerHTML = getGenderRate(
+		data.gender_rate
+	);
 };
 
 const getTypes = async (dataNode: any): Promise<void> => {
@@ -347,9 +349,13 @@ const removeChildren = (id: string): void => {
 
 const form: HTMLElement = document.getElementById('form')!;
 const input = <HTMLInputElement>document.getElementById('search-input');
+let image = document.getElementById('pokemon-sprite') as HTMLImageElement;
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
+	removeChildren('name-value');
+	removeChildren('description-value');
+	removeChildren('sprite-container-id');
 	removeChildren('nationalNum-container');
 	removeChildren('type-container');
 	removeChildren('species-container');
@@ -366,4 +372,5 @@ form.addEventListener('submit', (e) => {
 	removeChildren('speed-container');
 	let inputValue: string = input.value.toLowerCase();
 	getPokemon(inputValue);
+	input.value = '';
 });

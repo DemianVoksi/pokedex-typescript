@@ -252,3 +252,21 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+@media only screen and (max-width: 1300px) {
+
+  .pokemon-logo {
+    width: 300px;
+  }
+
+  .nonstats-nonbase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nonbase-container {
+    margin-bottom: 20px;
+  }
+}
