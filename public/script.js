@@ -110,7 +110,7 @@ const getPokemonSpecies = (id) => __awaiter(void 0, void 0, void 0, function* ()
     // fetch
     const response = yield fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
     const data = yield response.json();
-    console.log(data);
+    // console.log(data);
     document.getElementById('species-value').innerHTML = data.genera[7].genus;
     document.getElementById('nationalNum-value').innerHTML =
         data.pokedex_numbers[0].entry_number;

@@ -27,7 +27,7 @@ const fillSingleContainerBase = (
 	elemValueId: string,
 	barClass: string,
 	barId: string
-) => {
+): void => {
 	const container: HTMLElement = document.getElementById(parentName)!;
 	const title: HTMLElement = document.createElement(elemType);
 	const value: HTMLElement = document.createElement(elemType);
@@ -251,7 +251,7 @@ const getPokemonSpecies = async (id: number): Promise<any> => {
 	);
 	const data = await response.json();
 
-	console.log(data);
+	// console.log(data);
 	document.getElementById('species-value')!.innerHTML = data.genera[7].genus;
 	document.getElementById('nationalNum-value')!.innerHTML =
 		data.pokedex_numbers[0].entry_number;
@@ -269,7 +269,7 @@ const getPokemonSpecies = async (id: number): Promise<any> => {
 const getTypes = async (dataNode: any): Promise<void> => {
 	let typesDiv: Element = document.getElementById('type-value')!;
 	let typeParagraph: Element;
-	for (let i = 0; i < dataNode.length; i++) {
+	for (let i: number = 0; i < dataNode.length; i++) {
 		typeParagraph = document.createElement('p')!;
 		typeParagraph.innerHTML = dataNode[i].type.name;
 		typeParagraph.className = 'typeParagraph';
@@ -282,7 +282,7 @@ const statBar = (amount: number, elemId: string, color: string): void => {
 	bar.classList.add('bar');
 	let barDiv: HTMLDivElement;
 
-	for (let i = 0; i < amount * 1.5; i++) {
+	for (let i: number = 0; i < amount * 1.5; i++) {
 		barDiv = document.createElement('div');
 		barDiv.classList.add('barDiv');
 		barDiv.style.height = '10px';
@@ -298,13 +298,13 @@ const metricHeight = (input: number): string => {
 	if (centimeters < 100) {
 		return `${centimeters} cm`;
 	} else {
-		let meters = centimeters / 100;
+		let meters: number = centimeters / 100;
 		return `${meters} m`;
 	}
 };
 
 const metricWeight = (input: number): string => {
-	let grams = input * 100;
+	let grams: number = input * 100;
 
 	if (grams < 1000) {
 		return `0.${input} kg`;
@@ -320,13 +320,13 @@ const getGenderRate = (input: number): string => {
 	} else {
 		let femalePercentage: number = Number(((input / 8) * 100).toFixed(1));
 		let malePercentage: number = 100 - femalePercentage;
-		let result = `${femalePercentage}% female, ${malePercentage}% male`;
+		let result: string = `${femalePercentage}% female, ${malePercentage}% male`;
 		return result;
 	}
 };
 
 const capturePercentage = (input: number): string => {
-	let result = `${(0.39 * input).toFixed(2)} %`;
+	let result: string = `${(0.39 * input).toFixed(2)} %`;
 	return result;
 };
 
@@ -341,7 +341,7 @@ const capitalizeName = (name: string): string => {
 };
 
 const removeChildren = (id: string): void => {
-	const divId = document.getElementById(id)!;
+	const divId: HTMLElement = document.getElementById(id)!;
 	while (divId.firstChild) {
 		divId.removeChild(divId.lastChild!);
 	}
