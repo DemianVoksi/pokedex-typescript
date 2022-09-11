@@ -253,6 +253,12 @@ body {
   align-items: center;
 }
 
+#error {
+  font-family: var(--ubuntu);
+  font-size: 15px;
+  color: #ff0000;
+}
+
 @media only screen and (max-width: 1300px) {
 
   .pokemon-logo {

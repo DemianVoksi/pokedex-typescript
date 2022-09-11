@@ -195,53 +195,68 @@ const addTitles = (): void => {
 };
 
 const getPokemon = async (pokemon: string): Promise<any> => {
-	// fill containers and add titles
-	fillContainers();
-	addTitles();
-
 	// fetch
 	const response: Response = await fetch(
 		`https://pokeapi.co/api/v2/pokemon/${pokemon}`
 	);
-	const data = await response.json();
-	// species API
-	getPokemonSpecies(data.id);
 
-	// types
-	getTypes(data.types);
+	try {
+		// fill containers and add titles
+		fillContainers();
+		addTitles();
 
-	// sprite
-	let imageContainer = document.getElementById('sprite-container-id');
-	let image: HTMLImageElement = document.createElement('img');
-	imageContainer?.appendChild(image);
-	image.id = 'pokemon-sprite';
-	image.src = data.sprites.other['official-artwork'].front_default;
+		const data = await response.json();
+		// species API
+		getPokemonSpecies(data.id);
 
-	// other values
-	document.getElementById('name-value')!.innerHTML = capitalizeName(data.name);
-	document.getElementById('hp-value')!.innerHTML = data.stats[0].base_stat;
-	document.getElementById('attack-value')!.innerHTML = data.stats[1].base_stat;
-	document.getElementById('defense-value')!.innerHTML = data.stats[2].base_stat;
-	document.getElementById('specialAttack-value')!.innerHTML =
-		data.stats[3].base_stat;
-	document.getElementById('specialDefense-value')!.innerHTML =
-		data.stats[4].base_stat;
-	document.getElementById('speed-value')!.innerHTML = data.stats[5].base_stat;
-	document.getElementById('height-value')!.innerHTML = metricHeight(
-		data.height
-	);
-	document.getElementById('weight-value')!.innerHTML = metricWeight(
-		data.weight
-	);
-	document.getElementById('baseExp-value')!.innerHTML = data.base_experience;
+		// types
+		getTypes(data.types);
 
-	// stat bars
-	statBar(data.stats[0].base_stat, 'hp-bar-id', '#00ff00');
-	statBar(data.stats[1].base_stat, 'attack-bar-id', '#ffa500');
-	statBar(data.stats[2].base_stat, 'defense-bar-id', '#add8d6');
-	statBar(data.stats[3].base_stat, 'specialAttack-bar-id', '#ff0000');
-	statBar(data.stats[4].base_stat, 'specialDefense-bar-id', '#00008b');
-	statBar(data.stats[5].base_stat, 'speed-bar-id', '#c0c0c0');
+		// sprite
+		let imageContainer = document.getElementById('sprite-container-id');
+		let image: HTMLImageElement = document.createElement('img');
+		imageContainer?.appendChild(image);
+		image.id = 'pokemon-sprite';
+		image.src = data.sprites.other['official-artwork'].front_default;
+
+		// other values
+		document.getElementById('name-value')!.innerHTML = capitalizeName(
+			data.name
+		);
+		document.getElementById('hp-value')!.innerHTML = data.stats[0].base_stat;
+		document.getElementById('attack-value')!.innerHTML =
+			data.stats[1].base_stat;
+		document.getElementById('defense-value')!.innerHTML =
+			data.stats[2].base_stat;
+		document.getElementById('specialAttack-value')!.innerHTML =
+			data.stats[3].base_stat;
+		document.getElementById('specialDefense-value')!.innerHTML =
+			data.stats[4].base_stat;
+		document.getElementById('speed-value')!.innerHTML = data.stats[5].base_stat;
+		document.getElementById('height-value')!.innerHTML = metricHeight(
+			data.height
+		);
+		document.getElementById('weight-value')!.innerHTML = metricWeight(
+			data.weight
+		);
+		document.getElementById('baseExp-value')!.innerHTML = data.base_experience;
+
+		// stat bars
+		statBar(data.stats[0].base_stat, 'hp-bar-id', '#00ff00');
+		statBar(data.stats[1].base_stat, 'attack-bar-id', '#ffa500');
+		statBar(data.stats[2].base_stat, 'defense-bar-id', '#add8d6');
+		statBar(data.stats[3].base_stat, 'specialAttack-bar-id', '#ff0000');
+		statBar(data.stats[4].base_stat, 'specialDefense-bar-id', '#00008b');
+		statBar(data.stats[5].base_stat, 'speed-bar-id', '#c0c0c0');
+	} catch (e: any) {
+		const errorDiv: HTMLElement = document.getElementById('error')!;
+		if (e.name == 'SyntaxError') {
+			errorDiv.innerHTML =
+				"Oops, there seems to have been an error. Have you written the Pokemon's correct name?";
+		} else {
+			errorDiv.innerHTML = 'Oops, there seems to have been an error.';
+		}
+	}
 };
 
 const getPokemonSpecies = async (id: number): Promise<any> => {
@@ -353,6 +368,7 @@ let image = document.getElementById('pokemon-sprite') as HTMLImageElement;
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
+	removeChildren('error');
 	removeChildren('name-value');
 	removeChildren('description-value');
 	removeChildren('sprite-container-id');
