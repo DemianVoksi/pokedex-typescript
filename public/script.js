@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const fillSingleContainerNonbase = (parentName, elemType, elemClass, elemTitleId, elemValueId) => {
     const container = document.getElementById(parentName);
     const title = document.createElement(elemType);
@@ -155,7 +156,7 @@ const statBar = (amount, elemId, color) => {
         bar === null || bar === void 0 ? void 0 : bar.appendChild(barDiv);
     }
 };
-const metricHeight = (input) => {
+function metricHeight(input) {
     let centimeters = input * 10;
     if (centimeters < 100) {
         return `${centimeters} cm`;
@@ -164,7 +165,8 @@ const metricHeight = (input) => {
         let meters = centimeters / 100;
         return `${meters} m`;
     }
-};
+}
+exports.default = metricHeight;
 const metricWeight = (input) => {
     let grams = input * 100;
     if (grams < 1000) {
@@ -207,7 +209,7 @@ const removeChildren = (id) => {
 const form = document.getElementById('form');
 const input = document.getElementById('search-input');
 let image = document.getElementById('pokemon-sprite');
-form.addEventListener('submit', (e) => {
+form === null || form === void 0 ? void 0 : form.addEventListener('submit', (e) => {
     e.preventDefault();
     removeChildren('error');
     removeChildren('name-value');

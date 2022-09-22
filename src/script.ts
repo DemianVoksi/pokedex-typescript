@@ -307,7 +307,7 @@ const statBar = (amount: number, elemId: string, color: string): void => {
 	}
 };
 
-const metricHeight = (input: number): string => {
+export default function metricHeight(input: number): string {
 	let centimeters: number = input * 10;
 
 	if (centimeters < 100) {
@@ -316,7 +316,7 @@ const metricHeight = (input: number): string => {
 		let meters: number = centimeters / 100;
 		return `${meters} m`;
 	}
-};
+}
 
 const metricWeight = (input: number): string => {
 	let grams: number = input * 100;
@@ -366,7 +366,7 @@ const form: HTMLElement = document.getElementById('form')!;
 const input = <HTMLInputElement>document.getElementById('search-input');
 let image = document.getElementById('pokemon-sprite') as HTMLImageElement;
 
-form.addEventListener('submit', (e) => {
+form?.addEventListener('submit', (e) => {
 	e.preventDefault();
 	removeChildren('error');
 	removeChildren('name-value');
