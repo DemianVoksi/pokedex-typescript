@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.metricWeight = void 0;
 const fillSingleContainerNonbase = (parentName, elemType, elemClass, elemTitleId, elemValueId) => {
     const container = document.getElementById(parentName);
     const title = document.createElement(elemType);
@@ -167,7 +168,7 @@ function metricHeight(input) {
     }
 }
 exports.default = metricHeight;
-const metricWeight = (input) => {
+function metricWeight(input) {
     let grams = input * 100;
     if (grams < 1000) {
         return `0.${input} kg`;
@@ -176,7 +177,8 @@ const metricWeight = (input) => {
         let kg = grams / 1000;
         return `${kg} kg`;
     }
-};
+}
+exports.metricWeight = metricWeight;
 const getGenderRate = (input) => {
     if (input === -1) {
         return 'Genderless';

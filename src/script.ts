@@ -318,7 +318,7 @@ export default function metricHeight(input: number): string {
 	}
 }
 
-const metricWeight = (input: number): string => {
+export function metricWeight(input: number): string {
 	let grams: number = input * 100;
 
 	if (grams < 1000) {
@@ -327,7 +327,7 @@ const metricWeight = (input: number): string => {
 		let kg = grams / 1000;
 		return `${kg} kg`;
 	}
-};
+}
 
 const getGenderRate = (input: number): string => {
 	if (input === -1) {
