@@ -329,7 +329,7 @@ export function metricWeight(input: number): string {
 	}
 }
 
-const getGenderRate = (input: number): string => {
+export function getGenderRate(input: number): string {
 	if (input === -1) {
 		return 'Genderless';
 	} else {
@@ -338,12 +338,12 @@ const getGenderRate = (input: number): string => {
 		let result: string = `${femalePercentage}% female, ${malePercentage}% male`;
 		return result;
 	}
-};
+}
 
-const capturePercentage = (input: number): string => {
-	let result: string = `${(0.39 * input).toFixed(2)} %`;
+export function capturePercentage(input: number): string {
+	let result: string = `${(0.39 * input).toFixed(2)}%`;
 	return result;
-};
+}
 
 const breakFlavorText = (input: string): string => {
 	let result1: string = input.replace('\f', ' ');

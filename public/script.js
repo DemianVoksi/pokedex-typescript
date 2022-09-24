@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.metricWeight = void 0;
+exports.capturePercentage = exports.getGenderRate = exports.metricWeight = void 0;
 const fillSingleContainerNonbase = (parentName, elemType, elemClass, elemTitleId, elemValueId) => {
     const container = document.getElementById(parentName);
     const title = document.createElement(elemType);
@@ -179,7 +179,7 @@ function metricWeight(input) {
     }
 }
 exports.metricWeight = metricWeight;
-const getGenderRate = (input) => {
+function getGenderRate(input) {
     if (input === -1) {
         return 'Genderless';
     }
@@ -189,11 +189,13 @@ const getGenderRate = (input) => {
         let result = `${femalePercentage}% female, ${malePercentage}% male`;
         return result;
     }
-};
-const capturePercentage = (input) => {
-    let result = `${(0.39 * input).toFixed(2)} %`;
+}
+exports.getGenderRate = getGenderRate;
+function capturePercentage(input) {
+    let result = `${(0.39 * input).toFixed(2)}%`;
     return result;
-};
+}
+exports.capturePercentage = capturePercentage;
 const breakFlavorText = (input) => {
     let result1 = input.replace('\f', ' ');
     let result2 = result1.replace('\n', ' ');
